@@ -1,0 +1,1097 @@
+<!------------------------------------------------------------------------------------->
+<!----------------------------------- CRIPTONIST.COM ---------------------------------->
+<!------------------------------ Channel t.me/CRIPTONIST ------------------------------>
+<!------------------------------------------------------------------------------------->
+<!--Thank you for using my software for your calculations. I hope you find it useful.-->
+<!--The software does not collect data and operates exclusively on the user's device.-->
+<!------------------------------------------------------------------------------------->
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="./">
+    <title>HEX Calculator & Bitcoin Address Generator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="sticky-header-container">
+    <div class="sticky-inner-container">
+        <div class="header">
+            <div class="header-container">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <a href="https://t.me/criptonist" target="_blank" style="text-decoration: none; display: flex; align-items: center;">
+                        <img src="icon.png" alt="Logo" style="width: 50px; height: 50px; cursor: pointer;">
+                    </a>
+                    <a href="https://criptonist.com" target="_blank" style="
+                        font-size: 22px;
+                        color: white;
+                        text-decoration: none;
+                        font-weight: 600;
+                        margin-left: 5px;
+                        color: #998;
+                    ">
+                        C R I P T O N I S T
+                    </a>
+                </div>
+
+                <h1 style="margin: 0; padding-right: 40px; color: #bba; display: flex; align-items: center; gap: 10px;">
+                    HEX tools for Secp256k1 
+                    <img src="bitcoin-icon.png" alt="Bitcoin" style="width: 26px; height: 26px;">
+                    Bitcoin
+                </h1>
+            </div>
+        </div>
+
+        <div class="navigation-bar" id="navigationBar">
+            <div class="nav-container">
+                <div class="nav-buttons">
+                    <button class="nav-btn" onclick="return scrollToSection('calculator')">Calculator</button>
+                    <button class="nav-btn" onclick="return scrollToSection('division')">Division</button>
+                    <button class="nav-btn" onclick="return scrollToSection('mod')">Mod</button>
+                    <button class="nav-btn" onclick="return scrollToSection('converter')">Converter</button>
+                    <button class="nav-btn" onclick="return scrollToSection('bitcoin')">Bitcoin Generator</button>
+                    <button class="nav-btn" onclick="return scrollToSection('curve-division')">Curve Division</button>
+                    <button class="nav-btn" onclick="return scrollToSection('search-plus')">Search Plus</button>
+                    <button class="nav-btn" onclick="return scrollToSection('path-search')">Path Search</button>
+                    <button class="nav-btn" onclick="return scrollToSection('secp256k1')">SECP256k1 Info</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="main-content-wrapper">
+    <div class="content">
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 15px;">
+            <div class="calc-block" id="server-status" style="flex: 0 0 auto; margin-right: 20px; position: relative;">
+                <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <span class="status-indicator status-checking" id="statusDot"></span>
+                        <div>
+                            <div class="status-text" id="statusText">Checking server connection...</div>
+                            <div class="status-note" id="statusNote">Make sure Python server is running on port 5000</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="color: black; font-weight: 600; white-space: nowrap; flex-shrink: 0; display: flex; align-items: center; gap: 20px;">
+                <a href="https://bitaps.com/0#:~:text=EThe%20Times%2003/Jan/2009%20Chancellor%20on%20brink%20of%20second%20bailout%20for%20banks" target="_blank"
+                   style="font-size: 18px; color: #998; text-decoration: none; cursor: pointer; font-weight: 600;">
+                    The Times 03/Jan/2009 Chancellor on brink of second bailout for banks
+                </a>
+                <span style="font-size: 14px; color: #775;">
+                    Satoshi Nakamoto ©
+                </span>
+            </div>
+        </div>
+
+        <div class="calc-block" id="calculator">
+            <h3 style="border-bottom: 1px solid #303030;">Calculation (HEX)</h3>
+            <div class="calculator-layout">
+                <div class="calc-inputs">
+                    <div class="vertical-inputs">
+                        <div style="position: relative;">
+                            <input type="text" id="calcA" class="input-field" placeholder="HEX A (example: 1A2B3C)" maxlength="1024"
+                                   style="padding-right: 40px;"
+                                   oninput="
+                                       const counter = this.nextElementSibling;
+                                       const length = this.value.length;
+                                       counter.textContent = length + '';
+                                       counter.style.color = '#ddb';">
+                            <div style="
+                                position: absolute;
+                                right: 10px;
+                                top: 50%;
+                                transform: translateY(-50%);
+                                color: #ddb;
+                                font-size: 12px;
+                                pointer-events: none;
+                                background: transparent;
+                                padding: 0 4px;
+                                border: none;
+                                outline: none;">
+                                0
+                            </div>
+                        </div>
+                        <div style="position: relative;">
+                            <input type="text" id="calcB" class="input-field" placeholder="HEX B (example: F0E1D2)" maxlength="1024"
+                                   style="padding-right: 40px;"
+                                   oninput="
+                                       const counter = this.nextElementSibling;
+                                       const length = this.value.length;
+                                       counter.textContent = length + '';
+                                       counter.style.color = '#ddb';">
+                            <div style="
+                                position: absolute;
+                                right: 10px;
+                                top: 50%;
+                                transform: translateY(-50%);
+                                color: #ddb;
+                                font-size: 12px;
+                                pointer-events: none;
+                                background: transparent;
+                                padding: 0 4px;
+                                border: none;
+                                outline: none;">
+                                0
+                            </div>
+                        </div>
+                    </div>
+                    <div class="result-box" id="calcRes"></div>
+
+                    <div style="
+                        font-size: 14px;
+                        color: #775;
+                        margin-top: 8px;
+                        font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+                        word-break: break-all;
+                        background: #2c2c2c;
+                        padding: 2px;
+                        border-radius: 3px;
+                    ">
+                        &nbsp;&nbsp;n =  fffffffffffffffffffffffffffffffebaaedce6af48a03bbfd25e8cd0364141 &nbsp;n/3 = bfffffffffffffffffffffffffffffff0c0325ad0376782ccfddc6e99c28b0f0
+                        <br>n/2 = 7fffffffffffffffffffffffffffffff5d576e7357a4501ddfe92f46681b20a0 &nbsp;n/4 = 3fffffffffffffffffffffffffffffffaeabb739abd2280eeff497a3340d9050
+                    </div>
+
+                    <div style="display: flex; gap: 15px; align-items: flex-start;">
+                        <div style="flex: 1;">
+                            <textarea
+                                id="calcNotesLeft"
+                                class="sync-height"
+                                placeholder="notes ..."
+                                style="
+                                    width: 661px;
+                                    height: 60px;
+                                    padding: 10px;
+                                    border: 1px solid #333;
+                                    border-radius: 4px;
+                                    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+                                    font-size: 14px;
+                                    resize: vertical;
+                                    min-height: 60px;
+                                    outline: none;
+                                    color: #bbb;
+                                    background-color: #333;
+                                    box-sizing: border-box;
+                                "
+                            ></textarea>
+                        </div>
+    
+                        <div style="flex: 1;">
+                            <textarea
+                                id="calcNotesRight"
+                                class="sync-height"
+                                placeholder="notes ..."
+                                style="
+                                    width: 661px;
+                                    height: 60px;
+                                    padding: 10px;
+                                    border: 1px solid #333;
+                                    border-radius: 4px;
+                                    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+                                    font-size: 14px;
+                                    resize: vertical;
+                                    min-height: 60px;
+                                    outline: none;
+                                    color: #bbb;
+                                    background-color: #333;
+                                    box-sizing: border-box;
+                                "
+                            ></textarea>
+                        </div>
+                    </div>
+                </div>
+                    
+                <div class="calc-operations">
+                    <select id="calcOp" class="select-field">
+                        <option value="+">Addition (+)</option>
+                        <option value="-">Subtraction (−)</option>
+                        <option value="*">Multiplication (×)</option>
+                        <option value="/">Division (÷)</option>
+                        <option value="%">Modulo (%)</option>
+                        <option value="^">Exponentiation (^)</option>
+                    </select>
+                    <button class="btn" onclick="calc2()">Calculate</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="calc-block" id="division">
+            <div style="display: flex; align-items: baseline; margin-bottom: 4px;">
+                <h3 style="margin: 0; padding-bottom: 8px; border-bottom: 1px solid #555;">Division (HEX)</h3>
+                <div style="font-size: 13px; color: #775; font-style: italic; margin-left: 21px;">
+                    Division with remainder
+                </div>
+            </div>
+            <div class="calc-form">
+                <div class="form-row" style="align-items: flex-end;">
+                    <div class="form-col" style="flex: 1.5; min-width: 300px; position: relative;">
+                        <input type="text" id="divA" class="input-field" placeholder="Dividend (HEX)" maxlength="130"
+                               style="padding-right: 40px;"
+                               oninput="
+                                   const counter = this.nextElementSibling;
+                                   const length = this.value.length;
+                                   counter.textContent = length + '';
+                                   counter.style.color = '#ddb';">
+                        <div style="
+                            position: absolute;
+                            right: 10px;
+                            top: 50%;
+                            transform: translateY(-50%);
+                            color: #ddb;
+                            font-size: 12px;
+                            pointer-events: none;
+                            background: transparent;
+                            padding: 0 4px;
+                            border: none;
+                            outline: none;">
+                            0
+                        </div>
+                    </div>
+                    <div class="form-col" style="flex: 1.5; min-width: 300px; position: relative;">
+                       <input type="text" id="divB" class="input-field" placeholder="Divisor (HEX)" maxlength="130"
+                              style="padding-right: 40px;"
+                              oninput="
+                                  const counter = this.nextElementSibling;
+                                  const length = this.value.length;
+                                  counter.textContent = length + '';
+                                  counter.style.color = '#ddb';">
+                        <div style="
+                            position: absolute;
+                            right: 10px;
+                            top: 50%;
+                            transform: translateY(-50%);
+                            color: #ddb;
+                            font-size: 12px;
+                            pointer-events: none;
+                            background: transparent;
+                            padding: 0 4px;
+                            border: none;
+                            outline: none;">
+                            0
+                        </div>
+                    </div>
+                    <div class="form-col" style="flex: 0.6; min-width: 195px;">
+                        <button class="btn" id="divideBtn" onclick="divide()" style="width: 100%; height: 38px; color: white;">
+                            Divide
+                        </button>
+                    </div>
+                </div>
+                <div class="result-box" id="divRes"></div>
+            </div>
+        </div>
+
+        <div class="calc-block" id="mod">
+            <h3>Carrying out a number mod n and p</h3>
+            <div class="calc-form">
+                <div class="form-row">
+                    <div class="form-col-wide">
+                        <div style="position: relative;">
+                            <input type="text" id="modNInput" class="input-field" placeholder="HEX for mod n" maxlength="130"
+                                   style="padding-right: 40px;"
+                                   oninput="
+                                       const counter = this.nextElementSibling;
+                                       const length = this.value.length;
+                                       counter.textContent = length + '';
+                                       counter.style.color = '#ddb';">
+                            <div style="
+                                position: absolute;
+                                right: 10px;
+                                top: 50%;
+                                transform: translateY(-50%);
+                                color: #ddb;
+                                font-size: 12px;
+                                pointer-events: none;
+                                background: transparent;
+                                padding: 0 4px;
+                                border: none;
+                                outline: none;">
+                                0
+                            </div>
+                        </div>
+                        <div class="mod-note">Mod n = fffffffffffffffffffffffffffffffebaaedce6af48a03bbfd25e8cd0364141</div>
+                        <div class="result-box" id="modNRes"></div>
+                        <div class="mod-buttons-container">
+                            <button class="btn" id="modNBtn" onclick="modN()">Mod n</button>
+                        </div>
+                    </div>
+
+                    <div class="form-col-wide">
+                        <div style="position: relative;">
+                            <input type="text" id="modPInput" class="input-field" placeholder="HEX for mod p" maxlength="130"
+                                   style="padding-right: 40px;"
+                                   oninput="
+                                       const counter = this.nextElementSibling;
+                                       const length = this.value.length;
+                                       counter.textContent = length + '';
+                                       counter.style.color = '#ddb';">
+                            <div style="
+                                position: absolute;
+                                right: 10px;
+                                top: 50%;
+                                transform: translateY(-50%);
+                                color: #ddb;
+                                font-size: 12px;
+                                pointer-events: none;
+                                background: transparent;
+                                padding: 0 4px;
+                                border: none;
+                                outline: none;">
+                                0
+                            </div>
+                        </div>
+                        <div class="mod-note">Mod p = fffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2f</div>
+                        <div class="result-box" id="modPRes"></div>
+                        <div class="mod-buttons-container">
+                            <button class="btn" id="modPBtn" onclick="modP()">Mod p</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="calc-block" id="converter">
+            <div style="display: flex; align-items: baseline; margin-bottom: 15px;">
+                <h3 style="margin: 0; padding-bottom: 8px; border-bottom: 1px solid #555;">HEX | DEC Converter</h3>
+                <div style="font-size: 13px; color: #775; font-style: italic; margin-left: 21px;">
+                    (512 simbols max.)
+                </div>
+            </div>
+            <div class="calc-form">
+                <div class="form-row">
+                    <div class="form-col-wide">
+                        <div style="position: relative;">
+                            <input type="text" id="hexInput" class="input-field" placeholder="HEX number" maxlength="515"
+                                   style="padding-right: 40px;"
+                                   oninput="
+                                       const counter = this.nextElementSibling;
+                                       const length = this.value.length;
+                                       counter.textContent = length + '';
+                                       counter.style.color = '#ddb';">
+                            <div style="
+                                position: absolute;
+                                right: 10px;
+                                top: 50%;
+                                transform: translateY(-50%);
+                                color: #ddb;
+                                font-size: 12px;
+                                pointer-events: none;
+                                background: transparent;
+                                padding: 0 4px;
+                                border: none;
+                                outline: none;">
+                                0
+                            </div>
+                        </div>
+                        <div class="result-box" id="hexToDecRes"></div>
+                        <div class="converter-buttons-container">
+                            <button class="btn" id="hexToDecBtn" onclick="hexToDec()">HEX → DEC</button>
+                        </div>
+                    </div>
+
+                    <div class="form-col-wide">
+                        <div style="position: relative;">
+                            <input type="text" id="decInput" class="input-field" placeholder="DEC number" maxlength="620"
+                                   style="padding-right: 40px;"
+                                   oninput="
+                                       const counter = this.nextElementSibling;
+                                       const length = this.value.length;
+                                       counter.textContent = length + '';
+                                       counter.style.color = '#ddb';">
+                            <div style="
+                                position: absolute;
+                                right: 10px;
+                                top: 50%;
+                                transform: translateY(-50%);
+                                color: #ddb;
+                                font-size: 12px;
+                                pointer-events: none;
+                                background: transparent;
+                                padding: 0 4px;
+                                border: none;
+                                outline: none;">
+                                0
+                            </div>
+                        </div>
+                        <div class="result-box" id="decToHexRes"></div>
+                        <div class="converter-buttons-container">
+                            <button class="btn" id="decToHexBtn" onclick="decToHex()">DEC → HEX</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="calc-block bitcoin-generator" id="bitcoin">
+            <h3 style="display: flex; align-items: center; gap: 10px;">
+                <img src="bitcoin-btc-logo.png" alt="Bitcoin Logo" style="width: 20px; height: 20px;">
+                Bitcoin Address Generator
+                <span class="path-subtitle">This tool supports all Bitcoin address formats: Legacy (1...), SegWit (3...), P2WSH (bc1...), and Native SegWit (bc1q...).</span>
+            </h3>
+            <div class="calc-form">
+                <div class="form-row" style="align-items: flex-end; margin-bottom: 12px;">
+                    <div class="form-col" style="flex: 2.4; min-width: 300px; position: relative;">
+                        <input type="text" id="privateKey" class="input-field"
+                               placeholder="Private key HEX (64 characters max)"
+                               maxlength="64"
+                               oninput="
+                                   const counter = this.nextElementSibling;
+                                   const length = this.value.length;
+                                   counter.textContent = length + '';
+                                   counter.style.color = '#ddb';">
+                        <div style="
+                            position: absolute;
+                            right: 10px;
+                            top: 50%;
+                            transform: translateY(-50%);
+                            color: #ddb;
+                            font-size: 14px;
+                            pointer-events: none;
+                            background: transparent;
+                            padding: 0 4px;
+                            border: none;
+                            outline: none;
+                        ">0</div>
+                    </div>
+
+                    <div class="form-col" style="flex: 1; max-width: 100px;">
+                        <button class="btn" onclick="generateRandomPrivateKey()"
+                                style="width: 100%; height: 40px;">
+                            Random
+                        </button>
+                    </div>
+
+                    <div class="form-col" style="flex: 0.6; min-width: 195px;">
+                        <button class="btn" onclick="calculateBitcoinAddress()" id="btcBtn"
+                                style="width: 100%; height: 40px;">
+                            Generate Address
+                        </button>
+                    </div>
+                </div>
+                <div class="bitcoin-result" id="bitcoinResult">
+                    <div class="result-header">
+                       <div class="result-title">Generation Results</div>
+                        <button class="copy-btn" onclick="copyAllResults()" id="copyAllBtn">
+                            Copy All
+                        </button>
+                    </div>
+                    <div id="bitcoinContent">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="calc-block" id="curve-division">
+            <h3>Division on Curve (EC Division)</h3>
+            <div class="calc-form">
+                <div class="form-row" style="display: flex; align-items: flex-start; margin-bottom: 12px;">
+                    <div class="form-col" style="flex: 2; min-width: 250px; position: relative;">
+                        <input type="text" id="dividendInput" class="input-field" placeholder="Dividend (Private key HEX)" maxlength="66"
+                               style="height: 38px; padding-right: 40px;"
+                               oninput="
+                                   const counter = this.nextElementSibling;
+                                   const length = this.value.length;
+                                   counter.textContent = length + '';
+                                   counter.style.color = '#ddb';">
+                        <div style="
+                            position: absolute;
+                            right: 10px;
+                            top: 50%;
+                            transform: translateY(-50%);
+                            color: #ddb;
+                            font-size: 12px;
+                            pointer-events: none;
+                            background: transparent;
+                            padding: 0 4px;
+                            border: none;
+                            outline: none;">
+                            0
+                        </div>
+                    </div>
+                    <div class="form-col" style="flex: 2; min-width: 250px; position: relative;">
+                        <input type="text" id="dividerInput" class="input-field" placeholder="Divisor (HEX number)" maxlength="66"
+                               style="height: 38px; padding-right: 40px;"
+                               oninput="
+                                   const counter = this.nextElementSibling;
+                                   const length = this.value.length;
+                                   counter.textContent = length + '';
+                                   counter.style.color = '#ddb';">
+                        <div style="
+                            position: absolute;
+                            right: 10px;
+                            top: 50%;
+                            transform: translateY(-50%);
+                            color: #eee;
+                            font-size: 12px;
+                            pointer-events: none;
+                            background: transparent;
+                            padding: 0 4px;
+                            border: nddb;
+                            outline: none;">
+                            0
+                        </div>
+                    </div>
+                    <div class="form-col" style="flex: 0.6; min-width: 150px; padding-top: 0;">
+                        <button class="btn" onclick="calculateDivision()" id="divideCurveBtn" style="width: 100%; height: 38px; margin-top: 0; align-self: flex-start;">
+                            Divide on curve
+                        </button>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <strong>Note:</strong> This tool performs elliptic curve division: (dividend * G) / divisor.
+                    It calculates the multiplicative inverse of the divisor modulo n and applies it to the point. Both dividend and divisor should be in HEX format
+                </div>
+
+                <div class="bitcoin-result" id="divisionResult">
+                    <div class="result-header">
+                        <div class="result-title">Division Results</div>
+                        <button class="copy-btn" onclick="copyDivisionResults()" id="copyDivisionBtn">
+                            Copy All
+                        </button>
+                    </div>
+                    <div id="divisionContent">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="calc-block" id="search-plus">
+            <h3>Search Plus Keys (Range Reduction)</h3>
+            <div class="calc-form">
+                <div class="form-row" style="align-items: flex-end; margin-bottom: 12px;">
+                    <div class="form-col" style="flex: 2.4; min-width: 300px; position: relative;">
+                        <input type="text" id="searchPrivKey" class="input-field"
+                               placeholder="Private key HEX"
+                               maxlength="64"
+                               oninput="
+                                   const counter = this.nextElementSibling;
+                                   const length = this.value.length;
+                                   counter.textContent = length + '';
+                                   counter.style.color = '#ddb';">
+                        <div style="
+                            position: absolute;
+                            right: 10px;
+                            top: 50%;
+                            transform: translateY(-50%);
+                            color: #ddb;
+                            font-size: 12px;
+                            pointer-events: none;
+                            background: transparent;
+                            padding: 0 4px;
+                            border: none;
+                            outline: none;
+                        ">0</div>
+                    </div>
+                    <div class="form-col" style="flex: 0.6; min-width: 120px;">
+                        <select id="searchBits" class="select-field" style="font-size: 14px; padding: 10px;">
+                            <option value="1">1 bit</option>
+                            <option value="2">2 bits</option>
+                            <option value="3">3 bits</option>
+                            <option value="4">4 bits</option>
+                        </select>
+                   </div>
+                    <div class="form-col" style="flex: 0.6; min-width: 150px;">
+                        <button class="btn" onclick="calculateSearchPlus()" id="searchBtn" style="width: 100%; height: 40px;">
+                            Calculate Range
+                        </button>
+                   </div>
+                </div>
+                <div class="bitcoin-result" id="searchResult">
+                    <div class="result-header">
+                        <div class="result-title">Search Plus Results</div>
+                        <button class="copy-btn" onclick="copySearchResults()" id="copySearchBtn">
+                            Copy All
+                        </button>
+                    </div>
+                    <div id="searchContent">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="calc-block" id="path-search">
+            <h3>
+                Path Search Algorithm to Private Key 0x1
+                <span class="path-subtitle">This algorithm truncates secp256k1 private key with correct range selection or random selection to find path to key 0x1. Max 255 steps.</span>
+            </h3>
+            <div class="calc-form">
+                <div class="form-row" style="align-items: flex-end; margin-bottom: 1px;">
+                    <div class="form-col" style="flex: 2.4; min-width: 300px; padding-left: 180px; position: relative;">
+                    <input type="text" id="pathPrivateKey" class="input-field"
+                           placeholder="Private key HEX"
+                           maxlength="64"
+                           oninput="
+                               const counter = document.getElementById('pathKeyCounter');
+                               const length = this.value.length;
+                               if (counter) {
+                                   counter.textContent = length + '';
+                                   counter.style.color = '#ddb';
+                               }">
+                        <div id="pathKeyCounter" style="
+                            position: absolute;
+                            right: 10px;
+                            top: 50%;
+                            transform: translateY(-50%);
+                            color: #ddb;
+                            font-size: 12px;
+                            pointer-events: none;
+                            background: transparent;
+                            padding: 0 4px;
+                            border: none;
+                            outline: none;
+                        ">0</div>
+                    </div>
+
+                    <div class="form-col" style="flex: 0.6; min-width: 195px; padding-right: 180px;">
+                        <button class="btn btn-orange" onclick="generatePathRandomKey()"
+                                style="width: 100%; height: 38px;">
+                            Random Key
+                        </button>
+                    </div>
+                </div>
+
+                <div style="display: flex; justify-content: center; gap: 15px; margin-top: 15px; width: 100%;">
+                    <button class="btn" onclick="calculatePathSearch('even')" style="width: 140px; height: 38px; flex-shrink: 0;">
+                       Correct Path
+                    </button>
+
+                    <button class="btn" onclick="calculatePathSearch('random')" style="width: 140px; height: 38px; flex-shrink: 0;">
+                        Random Path
+                    </button>
+                </div>
+
+                <div class="path-loading" id="pathLoading" style="display: none;">
+                </div>
+
+                <div class="path-error" id="pathError"></div>
+
+                <div class="bitcoin-result" id="pathResult" style="display: none;">
+                    <div class="result-header">
+                        <div class="result-title">Path Search Results</div>
+                        <button class="copy-btn" onclick="copyPathResults()" id="copyPathBtn">
+                            Copy All
+                        </button>
+                    </div>
+                    <div id="pathContent">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="calc-block" id="secp256k1" style="margin-bottom: 6px;">
+            <h3>SECP256k1 info</h3>
+            <div class="secp256k1-block">
+                <div class="secp256k1-item">
+                    <span class="secp256k1-label">Base point (G):</span>
+                    <span class="secp256k1-value">79be667ef9dcbbac55a06295ce870b07029bfcdb2dce28d959f2815b16f81798 - X <br>483ada7726a3c4655da4fbfc0e1108a8fd17b448a68554199c47d08ffb10d4b8 - Y</span>
+                </div>
+                <div class="secp256k1-item">
+                    <span class="secp256k1-label">a:</span>
+                    <span class="secp256k1-value"><strong>0</strong></span>
+                </div>
+                <div class="secp256k1-item">
+                    <span class="secp256k1-label">b:</span>
+                    <span class="secp256k1-value"><strong>7</strong></span>
+                </div>
+                <div class="secp256k1-item">
+                    <span class="secp256k1-label">n:</span>
+                    <span class="secp256k1-value"><strong>fffffffffffffffffffffffffffffffebaaedce6af48a03bbfd25e8cd0364141</strong></span>
+                </div>
+                <div class="secp256k1-item">
+                    <span class="secp256k1-label">half of field n:</span>
+                    <span class="secp256k1-value"><strong>7fffffffffffffffffffffffffffffff5d576e7357a4501ddfe92f46681b20a0</strong></span>
+                </div>
+                <div class="secp256k1-item">
+                    <span class="secp256k1-label">p:</span>
+                    <span class="secp256k1-value"><strong>fffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2f</strong></span>
+                </div>
+                <div class="secp256k1-item">
+                    <span class="secp256k1-label">Embedding degree:</span>
+                    <span class="secp256k1-value">2aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa74727a26728c1ab49ff8651778090ae0</span>
+                </div>
+                <br>
+                <div class="secp256k1-item">
+                    <span class="secp256k1-label">Beta:</span>
+                    <span class="secp256k1-value">7ae96a2b657c07106e64479eac3434e99cf0497512f58995c1396c28719501ee</span>
+                </div>
+                <div class="secp256k1-item">
+                    <span class="secp256k1-label">Beta 2:</span>
+                    <span class="secp256k1-value">851695d49a83f8ef919bb86153cbcb16630fb68aed0a766a3ec693d68e6afa40</span>
+                </div>
+                <div class="secp256k1-item">
+                    <span class="secp256k1-label">Lambda:</span>
+                    <span class="secp256k1-value">5363ad4cc05c30e0a5261c028812645a122e22ea20816678df02967c1b23bd72</span>
+                </div>
+                <div class="secp256k1-item">
+                    <span class="secp256k1-label">Lambda 2:</span>
+                    <span class="secp256k1-value">ac9c52b33fa3cf1f5ad9e3fd77ed9ba4a880b9fc8ec739c2e0cfc810b51283ce</span>
+                </div>
+                <div class="secp256k1-item">
+                    <span class="secp256k1-label">Trace of Frobenius:</span>
+                    <span class="secp256k1-value">14551231950b75fc4402da1722fc9baef</span>
+                </div>
+                <div class="secp256k1-item">
+                    <span class="secp256k1-label">Cofactor:</span>
+                    <span class="secp256k1-value">1</span>
+                </div>
+                <div class="equation-line">
+                    <div style="color: #ccc;">
+                        Equation of the curve: y² ≡ x³ + ax + b
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+            <p>HEX Calculator & Bitcoin Address Generator | Uses Python server for secure calculations | Version 2.6</p>
+            <p>
+                Curve Hacking Progress on
+                <a href="https://criptonist.com" class="footer-link" target="_blank" rel="noopener noreferrer">criptonist.com</a> |
+                Telegram channel
+                <a href="https://t.me/criptonist" class="footer-link" target="_blank" rel="noopener noreferrer">@criptonist</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="copy-notification" id="copyNotification">Copied to clipboard!</div>
+<div class="heatmap-tooltip" id="heatmapTooltip"></div>
+
+<script>
+
+document.addEventListener('DOMContentLoaded', function () {
+    const left = document.getElementById('calcNotesLeft');
+    const right = document.getElementById('calcNotesRight');
+    if (!left || !right) return;
+
+    // защита от двойной инициализации
+    if (window.__CALC_NOTES_INIT__) return;
+    window.__CALC_NOTES_INIT__ = true;
+
+    const KEY_L = 'calcNotesLeft';
+    const KEY_R = 'calcNotesRight';
+    const KEY_H = 'calcNotesHeight';
+
+    // ВОССТАНОВЛЕНИЕ
+    const savedLeft = localStorage.getItem(KEY_L);
+    const savedRight = localStorage.getItem(KEY_R);
+    const savedHeight = localStorage.getItem(KEY_H);
+
+    if (savedLeft !== null) left.value = savedLeft;
+    if (savedRight !== null) right.value = savedRight;
+
+    if (savedHeight) {
+        const h = Math.max(parseInt(savedHeight, 10) || 60, 60);
+        left.style.height = h + 'px';
+        right.style.height = h + 'px';
+    }
+
+    // СОХРАНЕНИЕ (только когда ты сам меняешь)
+    function saveText() {
+        localStorage.setItem(KEY_L, left.value);
+        localStorage.setItem(KEY_R, right.value);
+    }
+
+    function saveHeight() {
+        // берём текущую высоту каждого поля отдельно (как было)
+        localStorage.setItem(KEY_H, String(Math.max(left.offsetHeight, 60)));
+    }
+
+    left.addEventListener('input', saveText);
+    right.addEventListener('input', saveText);
+
+    // ручной resize — сохраним высоту
+    left.addEventListener('mouseup', saveHeight);
+    right.addEventListener('mouseup', saveHeight);
+    left.addEventListener('touchend', saveHeight);
+    right.addEventListener('touchend', saveHeight);
+
+    window.addEventListener('beforeunload', () => {
+        saveText();
+        saveHeight();
+    });
+});
+
+(function () {
+    if (window.__BTC_TOOLS_BOOTSTRAPPED__) return;
+    window.__BTC_TOOLS_BOOTSTRAPPED__ = true;
+
+    console.log('Bitcoin Tools - Loading...');
+
+    const timers = (window.__BTC_TOOLS_TIMERS__ = window.__BTC_TOOLS_TIMERS__ || {
+        serverStatus: null,
+        readyBadgeRemove: null,
+        notesHeightDebounce: null
+    });
+
+    function loadScriptAsGlobal(url) {
+        return new Promise((resolve, reject) => {
+            const existing = document.querySelector(`script[src="${url}"]`);
+            if (existing) {
+                if (existing.dataset && existing.dataset.loaded === '1') return resolve();
+
+                existing.addEventListener('load', () => resolve(), { once: true });
+                existing.addEventListener('error', () => reject(new Error('Script load error: ' + url)), { once: true });
+                return;
+            }
+
+            const script = document.createElement('script');
+            script.src = url;
+            script.async = false;
+            script.addEventListener('load', () => {
+                if (script.dataset) script.dataset.loaded = '1';
+                resolve();
+            }, { once: true });
+            script.addEventListener('error', () => reject(new Error('Script load error: ' + url)), { once: true });
+            document.head.appendChild(script);
+        });
+    }
+
+    async function loadAllScripts() {
+        const scripts = [
+            'js/utils.js',
+            'js/ui.js',
+            'js/server.js',
+            'js/calculator.js',
+            'js/bitcoin.js',
+            'js/division.js',
+            'js/search.js',
+            'js/path-search.js',
+            'js/navigation.js',
+            'js/main.js'
+        ];
+
+        for (let i = 0; i < scripts.length - 1; i++) {
+            try {
+                await loadScriptAsGlobal(scripts[i]);
+                console.log(`Loaded: ${scripts[i]}`);
+            } catch (e) {
+                console.warn(`Failed to load ${scripts[i]}:`, e);
+            }
+        }
+
+        try {
+            await loadScriptAsGlobal('js/main.js');
+            console.log('Loaded: js/main.js');
+        } catch (e) {
+            console.error('Failed to load main.js:', e);
+            createFallbackMain();
+        }
+    }
+
+    function createFallbackMain() {
+        if (window.__BTC_TOOLS_FALLBACK_MAIN__) return;
+        window.__BTC_TOOLS_FALLBACK_MAIN__ = true;
+
+        const fallbackCode = `
+            // Fallback main.js
+            document.addEventListener('DOMContentLoaded', function() {
+                console.log('Fallback main.js loaded');
+                document.body.style.opacity = '1';
+
+                if (typeof setupCalculator === 'function') setupCalculator();
+                if (typeof setupBitcoinGenerator === 'function') setupBitcoinGenerator();
+                if (typeof setupDivision === 'function') setupDivision();
+                if (typeof setupSearchPlus === 'function') setupSearchPlus();
+                if (typeof setupPathSearch === 'function') setupPathSearch();
+                if (typeof setupNavigation === 'function') setupNavigation();
+
+                setTimeout(function() {
+                    if (typeof checkServerStatus === 'function') checkServerStatus();
+                }, 100);
+            });
+        `;
+
+        const script = document.createElement('script');
+        script.textContent = fallbackCode;
+        document.head.appendChild(script);
+    }
+
+    function ensureReadyBadge() {
+        let statusDiv = document.getElementById('__app_status');
+        if (!statusDiv) {
+            statusDiv = document.createElement('div');
+            statusDiv.id = '__app_status';
+            statusDiv.style.cssText = `
+                position: fixed;
+                bottom: 10px;
+                right: 10px;
+                background: #4CAF50;
+                color: white;
+                padding: 5px 10px;
+                border-radius: 3px;
+                font-size: 12px;
+                z-index: 9999;
+            `;
+            document.body.appendChild(statusDiv);
+        }
+        statusDiv.textContent = '✓ Ready';
+
+        if (timers.readyBadgeRemove) clearTimeout(timers.readyBadgeRemove);
+        timers.readyBadgeRemove = setTimeout(() => {
+            const el = document.getElementById('__app_status');
+            if (el) el.remove();
+            timers.readyBadgeRemove = null;
+        }, 3000);
+    }
+
+    function initializeApp() {
+        if (window.__APP_INITIALIZED__) return;
+        window.__APP_INITIALIZED__ = true;
+
+        console.log('Initializing Bitcoin Tools...');
+        document.body.style.opacity = '1';
+
+        if (!window.copyToClipboard) {
+            window.copyToClipboard = async function (text) {
+                try {
+                    await navigator.clipboard.writeText(text);
+                    if (window.showNotification) {
+                        showNotification('Copied to clipboard!');
+                    } else {
+                        alert('Copied!');
+                    }
+                } catch (err) {
+                    console.error('Copy failed:', err);
+                }
+            };
+        }
+
+        if (!window.scrollToSection) {
+            window.scrollToSection = function (sectionId) {
+                const element = document.getElementById(sectionId);
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' });
+
+                    const buttonIndexMap = {
+                        'calculator': 0, 'division': 1, 'mod': 2, 'converter': 3,
+                        'bitcoin': 4, 'curve-division': 5, 'search-plus': 6,
+                        'path-search': 7, 'secp256k1': 8
+                    };
+
+                    const navButtons = document.querySelectorAll('.nav-btn');
+                    const activeIndex = buttonIndexMap[sectionId];
+
+                    if (activeIndex !== undefined) {
+                        navButtons.forEach((btn, index) => {
+                            if (index === activeIndex) {
+                                btn.classList.add('active');
+                            } else {
+                                btn.classList.remove('active');
+                            }
+                        });
+                    }
+                }
+                return false;
+            };
+        }
+
+        try {
+            if (typeof setupCalculator === 'function') setupCalculator();
+            if (typeof setupBitcoinGenerator === 'function') setupBitcoinGenerator();
+            if (typeof setupDivision === 'function') setupDivision();
+            if (typeof setupSearchPlus === 'function') setupSearchPlus();
+            if (typeof setupPathSearch === 'function') setupPathSearch();
+            if (typeof setupNavigation === 'function') setupNavigation();
+
+            if (timers.serverStatus) clearTimeout(timers.serverStatus);
+            timers.serverStatus = setTimeout(() => {
+                if (typeof checkServerStatus === 'function') {
+                    checkServerStatus();
+                } else {
+                    console.warn('checkServerStatus function not found');
+                }
+                timers.serverStatus = null;
+            }, 200);
+
+            console.log('Bitcoin Tools initialized successfully!');
+            ensureReadyBadge();
+
+        } catch (error) {
+            console.error('Error during initialization:', error);
+
+            let errorDiv = document.getElementById('__init_error');
+            if (!errorDiv) {
+                errorDiv = document.createElement('div');
+                errorDiv.id = '__init_error';
+                errorDiv.style.cssText = `
+                    padding: 20px;
+                    margin: 20px;
+                    background: #ffebee;
+                    border: 1px solid #ef9a9a;
+                    border-radius: 4px;
+                    color: #c62828;
+                `;
+                const content = document.querySelector('.content');
+                if (content) content.prepend(errorDiv);
+            }
+
+            errorDiv.innerHTML = `
+                <strong>Инициализация завершена с ошибками</strong><br>
+                Основные функции должны работать.<br>
+                <small>${String(error && error.message ? error.message : error)}</small>
+            `;
+        }
+    }
+
+    function initNotesAutoSave() {
+        const notesField = document.getElementById('calcNotes');
+        if (!notesField) return;
+
+        if (notesField.dataset && notesField.dataset.bound === '1') return;
+        if (notesField.dataset) notesField.dataset.bound = '1';
+
+        const saved = localStorage.getItem('calc_notes');
+        if (saved !== null) notesField.value = saved;
+
+        const savedHeight = localStorage.getItem('calc_notes_height');
+        if (savedHeight !== null) notesField.style.height = savedHeight;
+
+        notesField.oninput = () => {
+            localStorage.setItem('calc_notes', notesField.value);
+        };
+
+        const saveHeight = () => {
+            if (timers.notesHeightDebounce) clearTimeout(timers.notesHeightDebounce);
+            timers.notesHeightDebounce = setTimeout(() => {
+                if (notesField.style.height) {
+                    localStorage.setItem('calc_notes_height', notesField.style.height);
+                }
+                timers.notesHeightDebounce = null;
+            }, 300);
+        };
+
+        notesField.onmouseup = saveHeight;
+        notesField.ontouchend = saveHeight;
+    }
+
+    async function startApp() {
+
+        if (window.__BTC_TOOLS_STARTED__) return;
+        window.__BTC_TOOLS_STARTED__ = true;
+
+        console.log('Starting Bitcoin Tools application...');
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', async () => {
+                initNotesAutoSave();
+                await loadAllScripts();
+                setTimeout(initializeApp, 100);
+            }, { once: true });
+        } else {
+            initNotesAutoSave();
+            await loadAllScripts();
+            setTimeout(initializeApp, 100);
+        }
+    }
+
+    startApp();
+})();
+</script>
+</body>
+</html>
