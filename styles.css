@@ -339,6 +339,8 @@ body {
 
 .select-field:focus { outline: none; border-color: #000; background: white; }
 
+.times-quote-link { font-size: 18px; }
+
 /* ==========================================================================
    BUTTONS
    ========================================================================== */
@@ -577,6 +579,27 @@ body {
     flex-direction: column;
     gap: 10px;
     flex-shrink: 0;
+}
+
+.calc-hex-info {
+    flex-basis: 100%;
+    width: 100%;
+    font-size: 14px;
+    color: #775;
+    margin-top: 8px;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    word-break: break-all;
+    background: #2c2c2c;
+    padding: 2px;
+    border-radius: 3px;
+}
+
+.calc-notes-row {
+    flex-basis: 100%;
+    width: 100%;
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
 }
 
 .vertical-inputs {
@@ -1139,6 +1162,8 @@ img.lazy-loaded { opacity: 1; }
         font-size: 14px;
     }
 
+    .times-quote-link { font-size: 9px; }
+
     /* Nav */
     .navigation-bar .nav-container { padding: 4px 8px; }
     .nav-buttons { justify-content: center; flex-wrap: wrap; gap: 6px; overflow-x: visible; }
@@ -1150,7 +1175,9 @@ img.lazy-loaded { opacity: 1; }
     .form-col-narrow  { min-width: 100%; flex: 1; }
     .calc-inputs      { min-width: 100%; }
     .calculator-layout { flex-direction: column; }
-    .calc-operations  { width: 100%; flex-direction: column; flex-wrap: nowrap; align-items: stretch; }
+    .calc-operations  { width: 100%; flex-direction: column; flex-wrap: nowrap; align-items: stretch; order: 3; }
+    .calc-hex-info    { order: 2; }
+    .calc-notes-row   { order: 4; }
 
     /* Search Plus / Path Search: input + select + button columns use
        .form-col with inline min-width/padding (300px, 180px...) that
@@ -1226,6 +1253,7 @@ img.lazy-loaded { opacity: 1; }
     .private-key-line .copy-btn { margin-left: 0; align-self: flex-end; }
 
     /* Secp256k1 */
+    .secp256k1-block { font-size: 7.5px; }
     .secp256k1-item { flex-direction: column; gap: 2px; }
     .secp256k1-label { min-width: 100%; }
 
