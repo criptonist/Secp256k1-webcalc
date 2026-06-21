@@ -595,6 +595,7 @@ body {
     margin-top: 4px;
     font-family: 'Consolas', monospace;
     padding-left: 5px;
+    word-break: break-all;
 }
 
 .division-note {
@@ -1140,7 +1141,7 @@ img.lazy-loaded { opacity: 1; }
 
     /* Nav */
     .navigation-bar .nav-container { padding: 4px 8px; }
-    .nav-buttons { justify-content: flex-start; flex-wrap: nowrap; gap: 6px; }
+    .nav-buttons { justify-content: center; flex-wrap: wrap; gap: 6px; overflow-x: visible; }
     .nav-btn { padding: 5px 9px; font-size: 12px; }
 
     /* Forms — stack all columns */
