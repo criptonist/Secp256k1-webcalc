@@ -79,7 +79,8 @@
             </div>
             <div style="color: black; font-weight: 600; white-space: nowrap; flex-shrink: 0; display: flex; align-items: center; gap: 20px;">
                 <a href="https://bitaps.com/0#:~:text=EThe%20Times%2003/Jan/2009%20Chancellor%20on%20brink%20of%20second%20bailout%20for%20banks" target="_blank"
-                   style="font-size: 18px; color: #998; text-decoration: none; cursor: pointer; font-weight: 600;">
+                   class="times-quote-link"
+                   style="color: #998; text-decoration: none; cursor: pointer; font-weight: 600;">
                     The Times 03/Jan/2009 Chancellor on brink of second bailout for banks
                 </a>
                 <span style="font-size: 14px; color: #775;">
@@ -141,22 +142,26 @@
                         </div>
                     </div>
                     <div class="result-box" id="calcRes"></div>
+                </div>
+                    
+                <div class="calc-operations">
+                    <select id="calcOp" class="select-field">
+                        <option value="+">Addition (+)</option>
+                        <option value="-">Subtraction (−)</option>
+                        <option value="*">Multiplication (×)</option>
+                        <option value="/">Division (÷)</option>
+                        <option value="%">Modulo (%)</option>
+                        <option value="^">Exponentiation (^)</option>
+                    </select>
+                    <button class="btn" onclick="calc2()">Calculate</button>
+                </div>
 
-                    <div style="
-                        font-size: 14px;
-                        color: #775;
-                        margin-top: 8px;
-                        font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
-                        word-break: break-all;
-                        background: #2c2c2c;
-                        padding: 2px;
-                        border-radius: 3px;
-                    ">
-                        &nbsp;&nbsp;n =  fffffffffffffffffffffffffffffffebaaedce6af48a03bbfd25e8cd0364141 &nbsp;n/3 = bfffffffffffffffffffffffffffffff0c0325ad0376782ccfddc6e99c28b0f0
-                        <br>n/2 = 7fffffffffffffffffffffffffffffff5d576e7357a4501ddfe92f46681b20a0 &nbsp;n/4 = 3fffffffffffffffffffffffffffffffaeabb739abd2280eeff497a3340d9050
-                    </div>
+                <div class="calc-hex-info">
+                    &nbsp;&nbsp;n =  fffffffffffffffffffffffffffffffebaaedce6af48a03bbfd25e8cd0364141 &nbsp;n/3 = bfffffffffffffffffffffffffffffff0c0325ad0376782ccfddc6e99c28b0f0
+                    <br>n/2 = 7fffffffffffffffffffffffffffffff5d576e7357a4501ddfe92f46681b20a0 &nbsp;n/4 = 3fffffffffffffffffffffffffffffffaeabb739abd2280eeff497a3340d9050
+                </div>
 
-                    <div style="display: flex; gap: 15px; align-items: flex-start;">
+                <div class="calc-notes-row">
                         <div style="flex: 1;">
                             <textarea
                                 id="calcNotesLeft"
@@ -202,19 +207,6 @@
                                 "
                             ></textarea>
                         </div>
-                    </div>
-                </div>
-                    
-                <div class="calc-operations">
-                    <select id="calcOp" class="select-field">
-                        <option value="+">Addition (+)</option>
-                        <option value="-">Subtraction (−)</option>
-                        <option value="*">Multiplication (×)</option>
-                        <option value="/">Division (÷)</option>
-                        <option value="%">Modulo (%)</option>
-                        <option value="^">Exponentiation (^)</option>
-                    </select>
-                    <button class="btn" onclick="calc2()">Calculate</button>
                 </div>
             </div>
         </div>
