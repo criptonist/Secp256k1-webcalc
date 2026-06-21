@@ -87,29 +87,6 @@ function formatUncompressedPubkey(x, y) {
     return `04 ${x}${y}`;
 }
 
-// Plain detail row (label + monospace value). Wraps onto two lines on narrow
-// screens instead of relying on a fixed px label column (was width:209px).
-function detailRow(label, value) {
-    return `
-        <div style="margin: 0 0 8px 0; display: flex; flex-wrap: wrap; gap: 2px 10px;">
-            <span style="font-size: 12px; color: #aaa; flex: 1 1 160px; font-weight: 600;">${label}</span>
-            <span style="flex: 3 1 200px; min-width: 0; word-break: break-all; font-family: 'Consolas', monospace; font-size: 13px; color: #ddd; font-weight: 400;">${value}</span>
-        </div>
-    `;
-}
-
-// Boxed address row with a Copy button (was width:195px label column).
-function addressRow(label, value, labelColor = '#aaa') {
-    return `
-        <div style="margin: 0 0 8px 0; padding: 12px; background: #363636; border-radius: 4px; border: 1px solid #363636; display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px;">
-            <span style="font-size: 12px; color: ${labelColor}; flex: 1 1 130px; font-weight: 600;">${label}</span>
-            <span style="flex: 3 1 180px; min-width: 0; word-break: break-all; font-family: 'Consolas', monospace; font-size: 14px; color: #f09322; font-weight: 500;">${value}</span>
-            <button class="copy-btn" style="font-size: 12px; flex-shrink: 0; padding: 6px 10px;" 
-                    onclick="copyToClipboard('${value}')">Copy</button>
-        </div>
-    `;
-}
-
 function showBitcoinResults(data) {
     const contentDiv = document.getElementById('bitcoinContent');
     if (!contentDiv) return;
@@ -134,36 +111,113 @@ function showBitcoinResults(data) {
     
     contentDiv.innerHTML = `
         <div class="result-section">
-            <h4 style="margin-bottom: 15px; color: #eee; font-size: 14px; font-weight: 500;">Uncompressed Public Key Details</h4>
+            <h4>Uncompressed Public Key Details</h4>
             
-            ${detailRow('Pubkey (Uncompressed):', formatUncompressedPubkey(uncompressedX, uncompressedY))}
-            ${detailRow('X coordinate:', uncompressedX)}
-            ${detailRow('Y coordinate:', uncompressedY)}
-            ${detailRow('SHA256 pubkey (Uncompressed):', sha256_uncompressed)}
-            ${detailRow('SHA256 hash:', sha256_hash1_uncompressed)}
-            ${detailRow('Prefix 00 + hash160:', prefix_hash160_uncompressed)}
-            ${detailRow('Prefix 00 + hash160 + checksum:', checksum_uncompressed)}
-            ${addressRow('Bitcoin Address:', data.uncompressed?.address || 'N/A')}
+            <div class="data-row">
+                <span class="data-label">Pubkey (Uncompressed):</span>
+                <span class="data-value">${formatUncompressedPubkey(uncompressedX, uncompressedY)}</span>
+            </div>
+            
+            <div class="data-row">
+                <span class="data-label">X coordinate:</span>
+                <span class="data-value">${uncompressedX}</span>
+            </div>
+            
+            <div class="data-row">
+                <span class="data-label">Y coordinate:</span>
+                <span class="data-value">${uncompressedY}</span>
+            </div>
+            
+            <!-- ДОБАВЛЯЕМ SHA256 ДАННЫЕ -->
+            <div class="data-row">
+                <span class="data-label">SHA256 pubkey (Uncompressed):</span>
+                <span class="data-value">${sha256_uncompressed}</span>
+            </div>
+            
+            <div class="data-row">
+                <span class="data-label">SHA256 hash:</span>
+                <span class="data-value">${sha256_hash1_uncompressed}</span>
+            </div>
+            
+            <div class="data-row">
+                <span class="data-label">Prefix 00 + hash160:</span>
+                <span class="data-value">${prefix_hash160_uncompressed}</span>
+            </div>
+            
+            <div class="data-row">
+                <span class="data-label">Prefix 00 + hash160 + checksum:</span>
+                <span class="data-value">${checksum_uncompressed}</span>
+            </div>
+            
+            <div class="address-row">
+                <span class="address-label">Bitcoin Address:</span>
+                <span class="address-value">${data.uncompressed?.address || 'N/A'}</span>
+                <button class="copy-btn" onclick="copyToClipboard('${data.uncompressed?.address || ''}')">Copy</button>
+            </div>
         </div>
         
         <div class="result-section">
-            <h4 style="margin-bottom: 15px; color: #eee; font-size: 14px; font-weight: 500;">Compressed Public Key Details</h4>
+            <h4>Compressed Public Key Details</h4>
             
-            ${detailRow('Pubkey (Compressed):', data.compressed?.pubkey || 'N/A')}
-            ${detailRow('SHA256 pubkey (Compressed):', sha256_compressed)}
-            ${detailRow('SHA256 hash (Compressed):', sha256_hash1_compressed)}
-            ${detailRow('Prefix 00 + hash160:', prefix_hash160_compressed)}
-            ${detailRow('Prefix 00 + hash160 + checksum:', checksum_compressed)}
-            ${addressRow('Bitcoin Address (Compressed):', data.compressed?.address || 'N/A')}
+            <div class="data-row">
+                <span class="data-label">Pubkey (Compressed):</span>
+                <span class="data-value">${data.compressed?.pubkey || 'N/A'}</span>
+            </div>
+            
+            <!-- ДОБАВЛЯЕМ SHA256 ДАННЫЕ -->
+            <div class="data-row">
+                <span class="data-label">SHA256 pubkey (Compressed):</span>
+                <span class="data-value">${sha256_compressed}</span>
+            </div>
+            
+            <div class="data-row">
+                <span class="data-label">SHA256 hash (Compressed):</span>
+                <span class="data-value">${sha256_hash1_compressed}</span>
+            </div>
+            
+            <div class="data-row">
+                <span class="data-label">Prefix 00 + hash160:</span>
+                <span class="data-value">${prefix_hash160_compressed}</span>
+            </div>
+            
+            <div class="data-row">
+                <span class="data-label">Prefix 00 + hash160 + checksum:</span>
+                <span class="data-value">${checksum_compressed}</span>
+            </div>
+            
+            <div class="address-row">
+                <span class="address-label">Bitcoin Address (Compressed):</span>
+                <span class="address-value">${data.compressed?.address || 'N/A'}</span>
+                <button class="copy-btn" onclick="copyToClipboard('${data.compressed?.address || ''}')">Copy</button>
+            </div>
         </div>
         
         <div class="result-section">
-            <h4 style="margin-bottom: 15px; color: #eee; font-size: 14px; font-weight: 500;">SegWit Addresses</h4>
+            <h4>SegWit Addresses</h4>
             
-            ${addressRow('SegWit (P2SH):', segwitAddress, '#ccc')}
-            ${addressRow('Native (P2WPKH):', nativeSegwit, '#ccc')}
-            ${addressRow('SegWit P2WSH:', p2wshAddress, '#ccc')}
-            ${addressRow('Taproot (P2TR):', p2trAddress, '#ccc')}
+            <div class="address-row">
+                <span class="address-label">SegWit (P2SH):</span>
+                <span class="address-value">${segwitAddress}</span>
+                <button class="copy-btn" onclick="copyToClipboard('${segwitAddress}')">Copy</button>
+            </div>
+            
+            <div class="address-row">
+                <span class="address-label">Native (P2WPKH):</span>
+                <span class="address-value">${nativeSegwit}</span>
+                <button class="copy-btn" onclick="copyToClipboard('${nativeSegwit}')">Copy</button>
+            </div>
+            
+            <div class="address-row">
+                <span class="address-label">SegWit P2WSH:</span>
+                <span class="address-value">${p2wshAddress}</span>
+                <button class="copy-btn" onclick="copyToClipboard('${p2wshAddress}')">Copy</button>
+            </div>
+            
+            <div class="address-row">
+                <span class="address-label">Taproot (P2TR):</span>
+                <span class="address-value">${p2trAddress}</span>
+                <button class="copy-btn" onclick="copyToClipboard('${p2trAddress}')">Copy</button>
+            </div>
         </div>
     `;
 }
