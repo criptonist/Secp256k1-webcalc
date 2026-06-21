@@ -1184,8 +1184,11 @@ img.lazy-loaded { opacity: 1; }
        override the stacked layout. Force them to fill the block on
        mobile so the private-key input spans the full width. */
     #search-plus .form-col,
-    #path-search .form-col {
+    #path-search .form-col,
+    #bitcoin .form-col,
+    #curve-division .form-col {
         min-width: 100% !important;
+        max-width: 100% !important;
         padding-left: 0 !important;
         padding-right: 0 !important;
         flex-basis: 100% !important;
