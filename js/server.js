@@ -6,6 +6,11 @@
 /* --The software does not collect data and operates exclusively on the user's device.--*/
 /* -------------------------------------------------------------------------------------*/
 
+// ЕДИНСТВЕННОЕ место, которое нужно менять при смене хостинга бэкенда.
+// Локально: 'http://127.0.0.1:5000'
+// На Render/Replit: 'https://ваш-сервис.onrender.com' (без слэша в конце)
+const API_BASE_URL = 'http://127.0.0.1:5000';
+
 let serverOnline = false;
 
 function isServerOnline() {
@@ -29,7 +34,7 @@ async function checkServerStatus() {
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), 2000);
         
-        const response = await fetch('http://127.0.0.1:5000/ping', {
+        const response = await fetch(`${API_BASE_URL}/ping`, {
             method: 'GET',
             mode: 'cors',
             signal: controller.signal
@@ -83,7 +88,7 @@ async function testServer() {
     
     try {
         const startTime = performance.now();
-        const response = await fetch('http://127.0.0.1:5000/ping', {
+        const response = await fetch(`${API_BASE_URL}/ping`, {
             method: 'GET',
             mode: 'cors'
         });
@@ -108,7 +113,7 @@ async function callServer(endpoint, data) {
         throw new Error('Server offline');
     }
     
-    const response = await fetch(`http://127.0.0.1:5000/${endpoint}`, {
+    const response = await fetch(`${API_BASE_URL}/${endpoint}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
