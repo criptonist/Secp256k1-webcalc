@@ -1,2 +1,7 @@
-Flask==2.3.3
-ecdsa==0.18.0
+flask
+flask-cors
+gunicorn
+ecdsa
+base58
+bech32
+pycryptodome
