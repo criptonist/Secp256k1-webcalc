@@ -88,73 +88,60 @@ function showDivisionResults(data) {
     const divisorInverse = data.inverse_hex || '';
     
     contentDiv.innerHTML = `
-        <div style="margin-bottom: 20px; padding: 15px; background: #222; border-radius: 4px;">
-            <div style="display: flex; flex-direction: column; gap: 10px;">
-                <div style="display: flex; align-items: flex-start;">
-                    <div style="width: 160px; flex-shrink: 0; font-weight: 600; color: #aaa; font-size: 13px;">Input Dividend:</div>
-                    <div style="flex: 1; font-family: 'Consolas', monospace; color: #aaa; overflow-x: auto; white-space: nowrap; font-size: 14px;">${data.dividend}</div>
-                </div>
-                <div style="display: flex; align-items: flex-start;">
-                    <div style="width: 160px; flex-shrink: 0; font-weight: 600; color: #aaa; font-size: 14px;">Input Divisor:</div>
-                    <div style="flex: 1; font-family: 'Consolas', monospace; color: #aaa; font-size: 13px;">${data.divider}</div>
-                </div>
-                <div style="display: flex; align-items: flex-start;">
-                    <div style="width: 160px; flex-shrink: 0; font-weight: 600; color: #aaa; font-size: 14px;">Result:</div>
-                    <div style="flex: 1; font-family: 'Consolas', monospace; overflow-x: auto; white-space: nowrap; 
-                         color: #00aa00; font-weight: 600; font-size: 14px; padding: 3px 0;">${resultHex}</div>
-                </div>
+        <div class="division-summary">
+            <div class="division-row">
+                <div class="division-row-label">Input Dividend:</div>
+                <div class="division-row-value">${data.dividend}</div>
+            </div>
+            <div class="division-row">
+                <div class="division-row-label">Input Divisor:</div>
+                <div class="division-row-value">${data.divider}</div>
+            </div>
+            <div class="division-row">
+                <div class="division-row-label">Result:</div>
+                <div class="division-row-value highlight">${resultHex}</div>
             </div>
         </div>
         
         <div class="result-section">
-            <h4 style="color: #aaa; font-size: 14px; font-weight: 500; margin-bottom: 15px; padding-bottom: 8px; border-bottom: 1px solid #777;">Details</h4>
+            <h4>Details</h4>
             
             <!-- Dividend Point -->
-            <div style="display: flex; align-items: flex-start; margin-bottom: 15px; padding: 0px 0;">
-                <div style="width: 240px; flex-shrink: 0; font-weight: 600; color: #aaa; font-size: 13.5px; padding-top: 0px;">Dividend Point (G × dividend):</div>
-                <div style="flex: 1; margin-left: 10px;">
-                    <div style="display: flex; align-items: flex-start; margin-bottom: 8px;">
-                        <span style="width: 20px; flex-shrink: 0; font-weight: 600; color: #aaa;">X:</span>
-                        <span style="font-family: 'Consolas', monospace; flex: 1; overflow-x: auto; white-space: nowrap; margin-left: 20px; color: #ccc; font-size: 13px;">${data.original_point?.x || ''}</span>
-                    </div>
-                    <div style="display: flex; align-items: flex-start;">
-                        <span style="width: 20px; flex-shrink: 0; font-weight: 600; color: #aaa;">Y:</span>
-                        <span style="font-family: 'Consolas', monospace; flex: 1; overflow-x: auto; white-space: nowrap; margin-left: 20px; color: #ccc; font-size: 13px;">${data.original_point?.y || ''}</span>
-                    </div>
-                </div>
+            <div class="data-row">
+                <div class="data-label">Dividend Point (G × dividend) X:</div>
+                <div class="data-value">${data.original_point?.x || ''}</div>
+            </div>
+            <div class="data-row">
+                <div class="data-label">Dividend Point (G × dividend) Y:</div>
+                <div class="data-value">${data.original_point?.y || ''}</div>
             </div>
             
             <!-- Divisor Inverse -->
-            <div style="display: flex; align-items: flex-start; margin-bottom: 15px; padding: 0px 0;">
-                <div style="width: 260px; flex-shrink: 0; font-weight: 600; color: #aaa; font-size: 13.5px; padding-top: 0px;">Divisor Inverse (mod n):</div>
-                <span style="flex: 1; font-family: 'Consolas', monospace; overflow-x: auto; white-space: nowrap; margin-left: 30px; color: #ccc; font-size: 13px;">${divisorInverse}</span>
+            <div class="data-row">
+                <div class="data-label">Divisor Inverse (mod n):</div>
+                <div class="data-value">${divisorInverse}</div>
             </div>
             
             <!-- Result Point -->
-            <div style="display: flex; align-items: flex-start; margin-bottom: 15px; padding: 0px 0; ">
-                <div style="width: 240px; flex-shrink: 0; font-weight: 600; color: #aaa; font-size: 13.5px; padding-top: 0px;">Result Point (G × result):</div>
-                <div style="flex: 1; margin-left: 10px;">
-                    <div style="display: flex; align-items: flex-start; margin-bottom: 8px;">
-                        <span style="width: 20px; flex-shrink: 0; font-weight: 600; color: #aaa;">X:</span>
-                        <span style="font-family: 'Consolas', monospace; flex: 1; overflow-x: auto; white-space: nowrap; margin-left: 20px; color: #ccc; font-size: 13px;">${data.result_point?.x || ''}</span>
-                    </div>
-                    <div style="display: flex; align-items: flex-start;">
-                        <span style="width: 20px; flex-shrink: 0; font-weight: 600; color: #aaa;">Y:</span>
-                        <span style="font-family: 'Consolas', monospace; flex: 1; overflow-x: auto; white-space: nowrap; margin-left: 20px; color: #ccc; font-size: 13px;">${data.result_point?.y || ''}</span>
-                    </div>
-                </div>
+            <div class="data-row">
+                <div class="data-label">Result Point (G × result) X:</div>
+                <div class="data-value">${data.result_point?.x || ''}</div>
+            </div>
+            <div class="data-row">
+                <div class="data-label">Result Point (G × result) Y:</div>
+                <div class="data-value">${data.result_point?.y || ''}</div>
             </div>
             
             <!-- Result decimal -->
-            <div style="display: flex; align-items: flex-start; margin-bottom: 15px; padding: 0px 0;">
-                <div style="width: 260px; flex-shrink: 0; font-weight: 600; color: #aaa; font-size: 13.5px; padding-top: 0px;">Result (decimal):</div>
-                <span style="flex: 1; font-family: 'Consolas', monospace; overflow-x: auto; white-space: nowrap; margin-left: 30px; color: #ccc; font-size: 13px;">${resultDec}</span>
+            <div class="data-row">
+                <div class="data-label">Result (decimal):</div>
+                <div class="data-value">${resultDec}</div>
             </div>
             
             <!-- Modulus n -->
-            <div style="display: flex; align-items: flex-start; padding: 0x 0;">
-                <div style="width: 260px; flex-shrink: 0; font-weight: 600; color: #aaa; font-size: 13.5px; padding-top: 4px;">Modulus n:</div>
-                <span style="flex: 1; font-family: 'Consolas', monospace; overflow-x: auto; white-space: nowrap; margin-left: 30px; color: #ccc; font-size: 13px;">${data.modulus_n || ''}</span>
+            <div class="data-row">
+                <div class="data-label">Modulus n:</div>
+                <div class="data-value">${data.modulus_n || ''}</div>
             </div>
         </div>
     `;
@@ -175,16 +162,10 @@ function showLoading(elementId, message = 'Loading...') {
     const element = document.getElementById(elementId);
     if (element) {
         element.innerHTML = `
-            <div style="text-align: center; padding: 20px; color: #666;">
-                <div class="spinner" style="display: inline-block; width: 20px; height: 20px; border: 2px solid #ddd; border-top: 2px solid #3498db; border-radius: 50%; animation: spin 1s linear infinite; margin-right: 10px;"></div>
+            <div class="loading">
+                <div class="loading-spinner"></div>
                 ${message}
             </div>
-            <style>
-                @keyframes spin {
-                    0% { transform: rotate(0deg); }
-                    100% { transform: rotate(360deg); }
-                }
-            </style>
         `;
     }
 }
