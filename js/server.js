@@ -9,7 +9,7 @@
 // ЕДИНСТВЕННОЕ место, которое нужно менять при смене хостинга бэкенда.
 // Локально: 'http://127.0.0.1:5000'
 // На Render/Replit: 'https://ваш-сервис.onrender.com' (без слэша в конце)
-const API_BASE_URL = 'http://127.0.0.1:5000';
+const API_BASE_URL = 'https://secp256k1-webcalc.onrender.com';
 
 let serverOnline = false;
 
