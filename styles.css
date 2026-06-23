@@ -323,6 +323,15 @@ body {
     padding-bottom: 0;
 }
 
+/* #privateKey (Bitcoin Address Generator) and #searchPrivKey (Search Plus
+   Keys) have an absolutely-positioned character counter overlaid on the
+   right edge of the field (see calc.html). Without reserved space, typed
+   hex digits scroll underneath that counter and visually merge with it.
+   Reserve room on the right so the text never reaches the counter. */
+#privateKey, #searchPrivKey {
+    padding-right: 46px;
+}
+
 .select-field {
     width: 100%;
     padding: 10px;
