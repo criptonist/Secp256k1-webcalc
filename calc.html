@@ -154,14 +154,14 @@
                                 placeholder="notes ..."
                                 style="
                                     width: 100%;
-                                    height: 60px;
                                     padding: 10px;
                                     border: 1px solid #333;
                                     border-radius: 4px;
                                     font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
                                     font-size: 14px;
-                                    resize: vertical;
+                                    resize: none;
                                     min-height: 60px;
+                                    overflow-y: hidden;
                                     outline: none;
                                     color: #bbb;
                                     background-color: #333;
@@ -650,17 +650,17 @@ document.addEventListener('DOMContentLoaded', function () {
     window.__CALC_NOTES_INIT__ = true;
 
     const KEY_L = 'calcNotesLeft';
-    const KEY_H = 'calcNotesHeight';
 
     // ВОССТАНОВЛЕНИЕ
     const savedLeft = localStorage.getItem(KEY_L);
-    const savedHeight = localStorage.getItem(KEY_H);
-
     if (savedLeft !== null) left.value = savedLeft;
 
-    if (savedHeight) {
-        const h = Math.max(parseInt(savedHeight, 10) || 60, 60);
-        left.style.height = h + 'px';
+    // Авто-рост поля по высоте контента. Заменяет ручной resize textarea,
+    // который на мобильных браузерах (например, iOS Safari) часто не
+    // работает вовсе — поле должно растягиваться само по мере набора текста.
+    function autoGrow() {
+        left.style.height = 'auto';
+        left.style.height = left.scrollHeight + 'px';
     }
 
     // СОХРАНЕНИЕ (только когда ты сам меняешь)
@@ -668,20 +668,18 @@ document.addEventListener('DOMContentLoaded', function () {
         localStorage.setItem(KEY_L, left.value);
     }
 
-    function saveHeight() {
-        localStorage.setItem(KEY_H, String(Math.max(left.offsetHeight, 60)));
-    }
-
-    left.addEventListener('input', saveText);
-
-    // ручной resize — сохраним высоту
-    left.addEventListener('mouseup', saveHeight);
-    left.addEventListener('touchend', saveHeight);
-
-    window.addEventListener('beforeunload', () => {
+    left.addEventListener('input', () => {
         saveText();
-        saveHeight();
+        autoGrow();
     });
+
+    window.addEventListener('resize', autoGrow);
+
+    // выставляем правильную высоту сразу при загрузке — на случай,
+    // если восстановленный текст многострочный
+    autoGrow();
+
+    window.addEventListener('beforeunload', saveText);
 });
 
 (function () {
