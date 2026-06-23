@@ -849,8 +849,9 @@ body {
     min-width: 0;
     font-family: 'Consolas', monospace;
     color: #aaa;
-    overflow-x: auto;
-    white-space: nowrap;
+    word-break: break-all;
+    overflow-wrap: anywhere;
+    white-space: normal;
     font-size: 13px;
 }
 
