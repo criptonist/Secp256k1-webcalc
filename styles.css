@@ -28,7 +28,7 @@ html {
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: #1a1a1a;
-    color: #ddd;
+    color: #800080; /*ddd*/
     min-height: 100vh;
     margin: 0;
     overflow-x: hidden;
