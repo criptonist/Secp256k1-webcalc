@@ -879,7 +879,7 @@ body {
     padding: 12px;
     border-radius: 3px;
     margin: 10px 0;
-    font-size: 15px;
+    font-size: 18px;
     line-height: 1.4;
 }
 
@@ -1156,7 +1156,7 @@ img.lazy-loaded { opacity: 1; }
 
     /* Layout */
     .main-content-wrapper { margin: 0; border-radius: 0; }
-    .content { padding: 16px; }
+    .content { padding: 1px; }
 
     /* Header */
     .sticky-header-container { padding: 0 12px; height: 110px; }
