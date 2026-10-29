@@ -28,7 +28,7 @@ async function checkServerStatus() {
     
     statusDot.className = 'status-indicator status-checking';
     statusText.textContent = 'Checking connection...';
-    statusNote.textContent = 'Connecting to server...';
+    statusNote.textContent = '';
     
     try {
         const controller = new AbortController();
@@ -69,12 +69,12 @@ async function checkServerStatus() {
         
         if (btcBtn) {
             btcBtn.disabled = true;
-            btcBtn.textContent = 'Server offline';
+            btcBtn.textContent = 'Offline';
         }
         
         if (searchBtn) {
             searchBtn.disabled = true;
-            searchBtn.textContent = 'Server offline';
+            searchBtn.textContent = 'Offline';
         }
     }
 }
@@ -110,7 +110,7 @@ async function callServer(endpoint, data) {
     if (!serverOnline) {
         showNotification('Start Python server first! Command: python server.py', true);
         checkServerStatus();
-        throw new Error('Server offline');
+        throw new Error('Offline');
     }
     
     const response = await fetch(`${API_BASE_URL}/${endpoint}`, {
