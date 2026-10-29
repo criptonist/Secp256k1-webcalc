@@ -198,7 +198,7 @@ body {
     align-items: center;
     padding: 12px 16px;
     position: relative;
-    min-height: 60px;
+    min-height: 30px;
 }
 
 .status-left {
