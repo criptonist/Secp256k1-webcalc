@@ -45,8 +45,8 @@ async function checkServerStatus() {
         if (response.ok) {
             serverOnline = true;
             statusDot.className = 'status-indicator status-online';
-            statusText.textContent = 'Server is online';
-            statusNote.textContent = 'Ready to work';
+            statusText.textContent = 'Online';
+            statusNote.textContent = '';
             
             if (btcBtn) {
                 btcBtn.disabled = false;
@@ -64,8 +64,8 @@ async function checkServerStatus() {
     } catch (error) {
         serverOnline = false;
         statusDot.className = 'status-indicator status-offline';
-        statusText.textContent = 'Server is offline';
-        statusNote.textContent = 'Run server.py on port 5000';
+        statusText.textContent = 'Offline';
+        statusNote.textContent = '';
         
         if (btcBtn) {
             btcBtn.disabled = true;
