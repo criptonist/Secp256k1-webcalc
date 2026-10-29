@@ -181,7 +181,7 @@ body {
    ========================================================================== */
 
 .content {
-    padding: 40px 63px;
+    padding: 16px 63px;
 }
 
 /* ==========================================================================
@@ -1156,7 +1156,7 @@ img.lazy-loaded { opacity: 1; }
 
     /* Layout */
     .main-content-wrapper { margin: 0; border-radius: 0; }
-    .content { padding: 1px; }
+    .content { padding: 16px; }
 
     /* Header */
     .sticky-header-container { padding: 0 12px; height: 110px; }
