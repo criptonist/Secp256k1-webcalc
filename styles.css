@@ -130,7 +130,7 @@ body {
    NAVIGATION BAR
    ========================================================================== */
 
-.navigation-bar {
+/* .navigation-bar {
     background: #1a1a1a;
     width: 100%;
     z-index: 1002;
@@ -174,7 +174,7 @@ body {
 }
 
 .nav-btn:hover { background: #443; color: #aaa; }
-.nav-btn.active { background: #009900; color: #000; font-weight: 500; }
+.nav-btn.active { background: #009900; color: #000; font-weight: 500; }*/
 
 /* ==========================================================================
    MAIN CONTENT AREA
