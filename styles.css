@@ -216,9 +216,9 @@ body {
     flex-shrink: 0;
 }
 
-.status-online  { background: #00cc00; }
-.status-offline { background: #ff3333; }
-.status-checking { background: #a5b3b5; animation: pulse 1.5s infinite; }
+.status-online  { background: #c73838; } /* 00cc00 */
+.status-offline { background: #5bb063; } /* ff3333 */
+.status-checking { background: #94c5d1; animation: pulse 1.5s infinite; }
 
 @keyframes pulse {
     0%, 100% { opacity: 1; }
