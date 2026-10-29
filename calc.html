@@ -83,7 +83,7 @@
                 <div class="calc-inputs">
                     <div class="vertical-inputs">
                         <div style="position: relative;">
-                            <input type="text" id="calcA" class="input-field" placeholder="HEX A (example: 1A2B3C)" maxlength="1024"
+                            <input type="text" id="calcA" class="input-field" placeholder="HEX A (:1A2B3C)" maxlength="1024"
                                    style="padding-right: 40px;"
                                    oninput="
                                        const counter = this.nextElementSibling;
@@ -106,7 +106,7 @@
                             </div>
                         </div>
                         <div style="position: relative;">
-                            <input type="text" id="calcB" class="input-field" placeholder="HEX B (example: F0E1D2)" maxlength="1024"
+                            <input type="text" id="calcB" class="input-field" placeholder="HEX B (:F0E1D2)" maxlength="1024"
                                    style="padding-right: 40px;"
                                    oninput="
                                        const counter = this.nextElementSibling;
@@ -134,12 +134,12 @@
                     
                 <div class="calc-operations">
                     <select id="calcOp" class="select-field">
-                        <option value="+">Addition (+)</option>
-                        <option value="-">Subtraction (−)</option>
-                        <option value="*">Multiplication (×)</option>
-                        <option value="/">Division (÷)</option>
-                        <option value="%">Modulo (%)</option>
-                        <option value="^">Exponentiation (^)</option>
+                        <option value="+">Add (+)</option>
+                        <option value="-">Sub (−)</option>
+                        <option value="*">Mul (×)</option>
+                        <option value="/">Div (÷)</option>
+                        <option value="%">Mod (%)</option>
+                        <option value="^">Exp (^)</option>
                     </select>
                     <button class="btn" onclick="calc2()">Calculate</button>
                 </div>
@@ -384,7 +384,7 @@
                 <div class="form-row" style="align-items: flex-end; margin-bottom: 12px;">
                     <div class="form-col" style="flex: 2.4; min-width: 300px; position: relative;">
                         <input type="text" id="privateKey" class="input-field"
-                               placeholder="Private key HEX (64 characters max)"
+                               placeholder="Private key HEX (64 max)"
                                maxlength="64"
                                oninput="
                                    const counter = this.nextElementSibling;
