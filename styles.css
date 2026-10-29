@@ -92,6 +92,7 @@ body {
     width: 100%;
     height: 80px;
     z-index: 1001;
+    position: relative;
 }
 
 .header .header-container {
@@ -102,9 +103,13 @@ body {
     align-items: center;
     width: 100%;
     justify-content: space-between;
+    box-sizing: border-box;
 }
 
 .header h1 {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
     margin: 0;
     font-size: 20px;
     font-weight: 200;
