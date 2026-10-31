@@ -27,7 +27,7 @@ html {
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #1a1a1a;
+    background: #9c8978;
     color: #aaa; /*ddd*/
     min-height: 100vh;
     margin: 0;
@@ -88,7 +88,7 @@ body {
 }
 
 .header {
-    background: #1a1a1a;
+    background: #9c8978;
     width: 100%;
     height: 80px;
     z-index: 1001;
@@ -194,7 +194,7 @@ body {
    ========================================================================== */
 
 #server-status {
-    background: #1a1a1a;
+    background: #9c8978;
     width: 480px;
     max-width: 100%;
     margin: 0 0 16px 0;
