@@ -86,6 +86,19 @@ function showDivisionResults(data) {
     const resultHex = data.result_scalar_hex || data.result || '';
     const resultDec = data.result_scalar_dec || '';
     const divisorInverse = data.inverse_hex || '';
+    if (typeof addHistory === 'function') {
+        addHistory(
+            'Elliptic Curve Division',
+            'Деление на эллиптической кривой',
+            `Dividend: ${data.dividend || ''}
+    Divisor: ${data.divider || ''}
+    Result HEX: ${resultHex}
+    Result DEC: ${resultDec}
+    Inverse: ${divisorInverse}
+    Result Point X: ${data.result_point?.x || ''}
+    Result Point Y: ${data.result_point?.y || ''}`
+        );
+    }
     
     contentDiv.innerHTML = `
         <div class="division-summary">
