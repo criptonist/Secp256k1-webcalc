@@ -2,7 +2,7 @@
 /* CRIPTONIST - Operation History */  
   
 const HISTORY_KEY = 'criptonist_operation_history';  
-const HISTORY_LIMIT = 20;  
+const HISTORY_LIMIT = 30;  
   
 function addHistory(title, action, details) {  
     try {  
@@ -43,7 +43,7 @@ function renderHistory() {
   
     if (!history.length) {  
         const empty = document.createElement('div');  
-        empty.textContent = 'История операций пуста';  
+        empty.textContent = 'History empty';  
         empty.className = 'history-empty';  
         container.appendChild(empty);  
         return;  
@@ -90,7 +90,7 @@ function toggleHistory() {
 }  
   
 function clearHistory() {  
-    if (!confirm('Очистить журнал операций?')) return;  
+    if (!confirm('Clear log?')) return;  
   
     localStorage.removeItem(HISTORY_KEY);  
     renderHistory();  
