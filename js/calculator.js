@@ -84,6 +84,11 @@ function calc2() {
         }
         
         const hexResult = toHex(result);
+            addHistory(
+        'Калькулятор (HEX)',
+        'Арифметическая операция',
+        `${document.getElementById('calcA').value} ${op} ${document.getElementById('calcB').value} = ${hexResult}`
+    );
         showResult('calcRes', `Result:  ${hexResult}`, false);
     } catch (error) {
         showResult('calcRes', ' >>> WARNING! <<< Input error. Check HEX format.', true);
