@@ -94,7 +94,6 @@ function showDivisionResults(data) {
 
             addHistory(
                 'Elliptic Curve Division',
-                'Деление на эллиптической кривой',
                 `Dividend: ${data.dividend || ''}
     Divisor: ${data.divider || ''}
     Result HEX: ${resultHex}`
