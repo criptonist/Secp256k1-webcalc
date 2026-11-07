@@ -167,7 +167,6 @@ function showSearchPlusResults(data) {
                 console.error('Search Plus history error:', error);
             }
         }
-    }
     // Use delegated, addEventListener-based handlers instead of inline
     // onclick="...${value}..." strings. Inline onclick breaks (and can be
     // unsafe) when the value contains quotes/special chars, and binding the
