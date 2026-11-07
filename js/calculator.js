@@ -95,15 +95,14 @@ function calc2() {
             }
 
              addHistory(
-                'Калькулятор (HEX)',
-                'Арифметическая операция',
+                'Calculation (HEX)',
                 `${document.getElementById('calcA').value} ${op} ${document.getElementById('calcB').value} = ${hexResult}`
             );
         } catch (historyError) {
             console.error('History error:', historyError);
         }        
     } catch (error) {
-        showResult('calcRes', ' >>> WARNING! <<< Input error. Check HEX format.', true);
+        showResult('calcRes', 'WARNING! Input error.', true);
     }
 }
 
@@ -131,11 +130,10 @@ function divide() {
                     window.lastHexDivisionKey = historyKey;
 
                     addHistory(
-                        'Деление (HEX)',
-                        'Деление с остатком',
+                        'Divide (HEX)',
                         `${document.getElementById('divA').value} / ${document.getElementById('divB').value}
-    Частное: ${toHex(quotient)}
-    Остаток: ${toHex(remainder)}`
+     quotient: ${toHex(quotient)}
+    remainder: ${toHex(remainder)}`
                     );
                 }
             } catch (historyError) {
@@ -143,7 +141,7 @@ function divide() {
             }
         showResult('divRes', ` Quotient: ${toHex(quotient)}\nRemainder: ${toHex(remainder)}`, false);
     } catch (error) {
-        showResult('divRes', ' >>> WARNING! <<< Input error. Check HEX format.', true);
+        showResult('divRes', 'WARNING! Input error.', true);
     }
 }
 function modN() {
@@ -159,7 +157,6 @@ function modN() {
         try {
             addHistory(
                 'Mod n',
-                'Вычисление по модулю n',
                 `${input} mod n = ${toHex(result)}`
             );
         } catch (historyError) {
@@ -167,7 +164,7 @@ function modN() {
         }
         showResult('modNRes', `Result:  ${toHex(result)}`, false);
     } catch (error) {
-        showResult('modNRes', ' >>> WARNING! <<< Input error. Check HEX format.', true);
+        showResult('modNRes', 'WARNING! Input error.', true);
     }
 }
 
@@ -184,7 +181,6 @@ function modP() {
          try {
             addHistory(
                 'Mod p',
-                'Вычисление по модулю p',
                 `${input} mod p = ${toHex(result)}`
             );
         } catch (historyError) {
@@ -192,7 +188,7 @@ function modP() {
         }
         showResult('modPRes', `Result:  ${toHex(result)}`, false);
     } catch (error) {
-        showResult('modPRes', ' >>> WARNING! <<< Input error. Check HEX format.', true);
+        showResult('modPRes', 'WARNING! Input error.', true);
     }
 }
 
@@ -202,7 +198,6 @@ function hexToDec() {
         if (!hex) {
             addHistory(
         'HEX → DEC',
-        'Конвертация',
         `${hex} = ${decimal}`
     );
             showResult('hexToDecRes', 'Enter HEX number', true);
@@ -211,7 +206,7 @@ function hexToDec() {
         const decimal = parseHex(hex);
         showResult('hexToDecRes', `DEC: ${decimal}`, false);
     } catch (error) {
-        showResult('hexToDecRes', ' >>> WARNING! <<< Input error. Check HEX format.', true);
+        showResult('hexToDecRes', 'WARNING! Input error.', true);
     }
 }
 
@@ -221,7 +216,6 @@ function decToHex() {
         if (!dec) {
             addHistory(
         'HEX → DEC',
-        'Конвертация',
         `${hex} = ${decimal}`
     );
             showResult('decToHexRes', 'Enter DEC number', true);
@@ -231,6 +225,6 @@ function decToHex() {
         const hex = toHex(decimal);
         showResult('decToHexRes', `HEX: ${hex}`, false);
     } catch (error) {
-        showResult('decToHexRes', ' >>> WARNING! <<< Input error. Use digits only.', true);
+        showResult('decToHexRes', 'WARNING! Input error.', true);
     }
 }
