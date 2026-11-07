@@ -4,7 +4,7 @@
 const HISTORY_KEY = 'criptonist_operation_history';  
 const HISTORY_LIMIT = 30;  
   
-function addHistory(title, action, details) {  
+function addHistory(title, details) {  
     try {  
         let history = JSON.parse(  
             localStorage.getItem(HISTORY_KEY) || '[]'  
@@ -14,7 +14,6 @@ function addHistory(title, action, details) {
             id: Date.now(),  
             time: new Date().toLocaleString('ru-RU'),  
             title: title,  
-            action: action,  
             details: details  
         });  
   
