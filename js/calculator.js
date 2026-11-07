@@ -84,12 +84,24 @@ function calc2() {
         }
         
         const hexResult = toHex(result);
-            addHistory(
-        'Калькулятор (HEX)',
-        'Арифметическая операция',
-        `${document.getElementById('calcA').value} ${op} ${document.getElementById('calcB').value} = ${hexResult}`
-    );
+
+        // Показываем результат вычисления.
         showResult('calcRes', `Result:  ${hexResult}`, false);
+
+        // Записываем операцию отдельно от вычисления.
+        try {
+            if (typeof addHistory !== 'function') {
+                throw new Error('addHistory is not loaded');
+            }
+
+             addHistory(
+                'Калькулятор (HEX)',
+                'Арифметическая операция',
+                `${document.getElementById('calcA').value} ${op} ${document.getElementById('calcB').value} = ${hexResult}`
+            );
+        } catch (historyError) {
+            console.error('History error:', historyError);
+        }        
     } catch (error) {
         showResult('calcRes', ' >>> WARNING! <<< Input error. Check HEX format.', true);
     }
