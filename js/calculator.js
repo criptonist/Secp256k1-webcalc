@@ -124,21 +124,28 @@ function divide() {
         
         const quotient = a / b;
         const remainder = a % b;
-        try {
-            addHistory(
-                'Деление (HEX)',
-                'Деление с остатком',
-                `${document.getElementById('divA').value} / ${document.getElementById('divB').value}\nЧастное: ${toHex(quotient)}\nОстаток: ${toHex(remainder)}`
-            );
-        } catch (historyError) {
-            console.error('History error:', historyError);
-        }
+            try {
+                const historyKey = `${document.getElementById('divA').value}_${document.getElementById('divB').value}`;
+
+                if (window.lastHexDivisionKey !== historyKey) {
+                    window.lastHexDivisionKey = historyKey;
+
+                    addHistory(
+                        'Деление (HEX)',
+                        'Деление с остатком',
+                        `${document.getElementById('divA').value} / ${document.getElementById('divB').value}
+    Частное: ${toHex(quotient)}
+    Остаток: ${toHex(remainder)}`
+                    );
+                }
+            } catch (historyError) {
+                console.error('History error:', historyError);
+            }
         showResult('divRes', ` Quotient: ${toHex(quotient)}\nRemainder: ${toHex(remainder)}`, false);
     } catch (error) {
         showResult('divRes', ' >>> WARNING! <<< Input error. Check HEX format.', true);
     }
 }
-
 function modN() {
     try {
         const input = document.getElementById('modNInput').value.trim();
