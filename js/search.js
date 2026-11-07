@@ -149,11 +149,7 @@ function showSearchPlusResults(data) {
 
     contentDiv.innerHTML = html;
         if (typeof addHistory === 'function') {
-            const historyKey = `${data.input}_${data.bits}_${data.total_count}`;
-
-            if (window.lastSearchHistoryKey !== historyKey) {
-                window.lastSearchHistoryKey = historyKey;
-
+            try {
                 const privateKeys = data.points
                     .map(point => point.private_key)
                     .join('\n');
@@ -162,11 +158,13 @@ function showSearchPlusResults(data) {
                     'Search Plus',
                     'Range Reduction',
                     `Input Private Key: ${data.input}
-    Bits: ${data.bits}
-    Total Points: ${data.total_count}
-    Private Key:
-    ${privateKeys}`
+        Bits: ${data.bits}
+        Total Points: ${data.total_count}
+        Private Key:
+        ${privateKeys}`
                 );
+            } catch (error) {
+                console.error('Search Plus history error:', error);
             }
         }
     Generated Points:
