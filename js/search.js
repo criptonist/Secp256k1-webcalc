@@ -148,23 +148,27 @@ function showSearchPlusResults(data) {
     `;
 
     contentDiv.innerHTML = html;
-    if (typeof addHistory === 'function') {
-        const pointsDetails = data.points.map((point, index) => {
-            return `Point ${index + 1}:
-    Private Key: ${point.private_key}
-    X: ${point.x}
-    Y: ${point.y}`;
-        }).join('\n\n');
+        if (typeof addHistory === 'function') {
+            const historyKey = `${data.input}_${data.bits}_${data.total_count}`;
 
-        addHistory(
-            'Search Plus',
-            'Range Reduction',
-            `Input Private Key: ${data.input}
+            if (window.lastSearchHistoryKey !== historyKey) {
+                window.lastSearchHistoryKey = historyKey;
+
+                const privateKeys = data.points
+                    .map(point => point.private_key)
+                    .join('\n');
+
+                addHistory(
+                    'Search Plus',
+                    'Range Reduction',
+                    `Input Private Key: ${data.input}
     Bits: ${data.bits}
     Total Points: ${data.total_count}
-    Original Public Key X: ${data.original_pubkey?.x || ''}
-    Original Public Key Y: ${data.original_pubkey?.y || ''}
-
+    Private Key:
+    ${privateKeys}`
+                );
+            }
+        }
     Generated Points:
     ${pointsDetails}`
         );
