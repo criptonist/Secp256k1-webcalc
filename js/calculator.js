@@ -108,6 +108,24 @@ function calc2() {
         showResult('calcRes', 'WARNING! Input error.', true);
     }
 }
+function appendHexValue(inputId, value) {
+    const input = document.getElementById(inputId);
+
+    if (!input) {
+        console.error('Input not found:', inputId);
+        return;
+    }
+
+    input.value += value;
+
+    const counter = input.parentElement.querySelector('div');
+    if (counter) {
+        counter.textContent = input.value.length;
+    }
+
+    input.dispatchEvent(new Event('input', { bubbles: true }));
+    input.focus();
+}
 function divide() {
     try {
         const a = parseHex(document.getElementById('divA').value);
