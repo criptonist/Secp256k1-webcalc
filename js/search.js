@@ -170,7 +170,7 @@ function showSearchPlusResults(data) {
             );
 
             if (!alreadyExists) {
-                addHistory('Search Plus', 'Range Reduction', details);
+                addHistory('Search Plus', details);
             }
         } catch (error) {
             console.error('Search Plus history error:', error);
