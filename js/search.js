@@ -146,32 +146,37 @@ function showSearchPlusResults(data) {
             </div>
         </div>
     `;
-
     contentDiv.innerHTML = html;
-        if (typeof addHistory === 'function') {
-            try {
-                const privateKeys = data.points
-                    .map(point => point.private_key)
-                    .join('\n');
 
-                addHistory(
-                    'Search Plus',
-                    'Range Reduction',
-                    `Input Private Key: ${data.input}
-        Bits: ${data.bits}
-        Total Points: ${data.total_count}
-        Private Key:
-        ${privateKeys}`
-                );
-            } catch (error) {
-                console.error('Search Plus history error:', error);
+    if (typeof addHistory === 'function') {
+        try {
+            const privateKeys = data.points
+                .map(point => point.private_key)
+                .join('\n');
+
+            const details = `Input Private Key: ${data.input}
+    Bits: ${data.bits}
+    Total Points: ${data.total_count}
+    Private Key:
+    ${privateKeys}`;
+
+            const history = JSON.parse(
+                localStorage.getItem('criptonist_operation_history') || '[]' 
+            );
+
+            const alreadyExists = history.some(item =>
+                item.title === 'Search Plus' &&
+                item.details === details
+            );
+
+            if (!alreadyExists) {
+                addHistory('Search Plus', 'Range Reduction', details);
             }
+        } catch (error) {
+            console.error('Search Plus history error:', error);
         }
-    // Use delegated, addEventListener-based handlers instead of inline
-    // onclick="...${value}..." strings. Inline onclick breaks (and can be
-    // unsafe) when the value contains quotes/special chars, and binding the
-    // listener directly is more reliable across mobile browsers than
-    // relying on attribute-based handlers.
+    }
+
     contentDiv.querySelectorAll('.copy-btn[data-private-key]').forEach(btn => {
         btn.addEventListener('click', () => {
             copyToClipboard(btn.getAttribute('data-private-key'));
