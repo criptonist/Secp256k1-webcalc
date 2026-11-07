@@ -27,20 +27,23 @@ function setupCalculator() {
 
 function calc2() {
     try {
-        const a = parseHex(document.getElementById('calcA').value);
-        const b = parseHex(document.getElementById('calcB').value);
+        const inputA = document.getElementById('calcA');
+        const inputB = document.getElementById('calcB');
+
+        const a = parseHex(inputA.value);
+        const b = parseHex(inputB.value);
         const op = document.getElementById('calcOp').value;
-        
+
         if (a === undefined || b === undefined) {
             showResult('calcRes', 'Enter both numbers', true);
             return;
         }
-        
+
         if (op === '^' && b > 10000n) {
             showResult('calcRes', 'Exponent too large (max 10000)', true);
             return;
         }
-        
+
         let result;
         switch(op) {
             case '+': result = a + b; break;
@@ -65,11 +68,11 @@ function calc2() {
                     showResult('calcRes', 'Negative exponent not supported', true);
                     return;
                 }
-                
+
                 result = 1n;
                 let base = a;
                 let exp = b;
-                
+
                 while (exp > 0n) {
                     if (exp % 2n === 1n) {
                         result = result * base;
@@ -82,7 +85,7 @@ function calc2() {
                 showResult('calcRes', 'Unknown operation', true);
                 return;
         }
-        
+
         const hexResult = toHex(result);
 
         // Показываем результат вычисления.
@@ -96,7 +99,7 @@ function calc2() {
 
              addHistory(
                 'Calculation (HEX)',
-                `${document.getElementById('calcA').value} ${op} ${document.getElementById('calcB').value} = ${hexResult}`
+                `${inputA.value} ${op} ${inputB.value} = ${hexResult}`
             );
         } catch (historyError) {
             console.error('History error:', historyError);
@@ -105,7 +108,6 @@ function calc2() {
         showResult('calcRes', 'WARNING! Input error.', true);
     }
 }
-
 function divide() {
     try {
         const a = parseHex(document.getElementById('divA').value);
