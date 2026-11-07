@@ -1530,3 +1530,28 @@ img.lazy-loaded { opacity: 1; }
         font-size: 10px;
     }
 }
+.hex-quick-buttons {
+    display: flex;
+    gap: 6px;
+    margin: 5px 0;
+}
+
+.hex-quick-buttons button {
+    flex: 1;
+    height: 32px;
+    background: #333;
+    color: #ddb;
+    border: 1px solid #555;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.hex-counter {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #ddb;
+    font-size: 12px;
+    pointer-events: none;
+}
