@@ -124,11 +124,15 @@ function divide() {
         
         const quotient = a / b;
         const remainder = a % b;
+        try {
             addHistory(
-        'Деление (HEX)',
-        'Деление с остатком',
-        `${document.getElementById('divA').value} / ${document.getElementById('divB').value}\nЧастное: ${toHex(quotient)}\nОстаток: ${toHex(remainder)}`
-    );
+                'Деление (HEX)',
+                'Деление с остатком',
+                `${document.getElementById('divA').value} / ${document.getElementById('divB').value}\nЧастное: ${toHex(quotient)}\nОстаток: ${toHex(remainder)}`
+            );
+        } catch (historyError) {
+            console.error('History error:', historyError);
+        }
         showResult('divRes', ` Quotient: ${toHex(quotient)}\nRemainder: ${toHex(remainder)}`, false);
     } catch (error) {
         showResult('divRes', ' >>> WARNING! <<< Input error. Check HEX format.', true);
@@ -145,11 +149,15 @@ function modN() {
         if (result < 0n) {
             result = MOD_N + result;
         }
+        try {
             addHistory(
-        'Mod n',
-        'Вычисление по модулю n',
-        `${input} mod n = ${toHex(result)}`
-    );
+                'Mod n',
+                'Вычисление по модулю n',
+                `${input} mod n = ${toHex(result)}`
+            );
+        } catch (historyError) {
+            console.error('History error:', historyError);
+        }
         showResult('modNRes', `Result:  ${toHex(result)}`, false);
     } catch (error) {
         showResult('modNRes', ' >>> WARNING! <<< Input error. Check HEX format.', true);
@@ -166,11 +174,15 @@ function modP() {
         if (result < 0n) {
             result = MOD_P + result;
         }
+         try {
             addHistory(
-        'Mod p',
-        'Вычисление по модулю p',
-        `${input} mod p = ${toHex(result)}`
-    );
+                'Mod p',
+                'Вычисление по модулю p',
+                `${input} mod p = ${toHex(result)}`
+            );
+        } catch (historyError) {
+            console.error('History error:', historyError);
+        }
         showResult('modPRes', `Result:  ${toHex(result)}`, false);
     } catch (error) {
         showResult('modPRes', ' >>> WARNING! <<< Input error. Check HEX format.', true);
