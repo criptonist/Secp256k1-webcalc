@@ -132,8 +132,8 @@ function divide() {
                     addHistory(
                         'Divide (HEX)',
                         `${document.getElementById('divA').value} / ${document.getElementById('divB').value}
-     quotient: ${toHex(quotient)}
-    remainder: ${toHex(remainder)}`
+     \nquotient: ${toHex(quotient)}
+    \nremainder: ${toHex(remainder)}`
                     );
                 }
             } catch (historyError) {
