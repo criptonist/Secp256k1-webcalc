@@ -148,7 +148,27 @@ function showSearchPlusResults(data) {
     `;
 
     contentDiv.innerHTML = html;
+    if (typeof addHistory === 'function') {
+        const pointsDetails = data.points.map((point, index) => {
+            return `Point ${index + 1}:
+    Private Key: ${point.private_key}
+    X: ${point.x}
+    Y: ${point.y}`;
+        }).join('\n\n');
 
+        addHistory(
+            'Search Plus',
+            'Range Reduction',
+            `Input Private Key: ${data.input}
+    Bits: ${data.bits}
+    Total Points: ${data.total_count}
+    Original Public Key X: ${data.original_pubkey?.x || ''}
+    Original Public Key Y: ${data.original_pubkey?.y || ''}
+
+    Generated Points:
+    ${pointsDetails}`
+        );
+    }
     // Use delegated, addEventListener-based handlers instead of inline
     // onclick="...${value}..." strings. Inline onclick breaks (and can be
     // unsafe) when the value contains quotes/special chars, and binding the
