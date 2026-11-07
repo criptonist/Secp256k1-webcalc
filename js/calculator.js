@@ -112,7 +112,11 @@ function divide() {
         
         const quotient = a / b;
         const remainder = a % b;
-        
+            addHistory(
+        'Деление (HEX)',
+        'Деление с остатком',
+        `${document.getElementById('divA').value} / ${document.getElementById('divB').value}\nЧастное: ${toHex(quotient)}\nОстаток: ${toHex(remainder)}`
+    );
         showResult('divRes', ` Quotient: ${toHex(quotient)}\nRemainder: ${toHex(remainder)}`, false);
     } catch (error) {
         showResult('divRes', ' >>> WARNING! <<< Input error. Check HEX format.', true);
@@ -129,7 +133,11 @@ function modN() {
         if (result < 0n) {
             result = MOD_N + result;
         }
-        
+            addHistory(
+        'Mod n',
+        'Вычисление по модулю n',
+        `${input} mod n = ${toHex(result)}`
+    );
         showResult('modNRes', `Result:  ${toHex(result)}`, false);
     } catch (error) {
         showResult('modNRes', ' >>> WARNING! <<< Input error. Check HEX format.', true);
@@ -146,7 +154,11 @@ function modP() {
         if (result < 0n) {
             result = MOD_P + result;
         }
-        
+            addHistory(
+        'Mod p',
+        'Вычисление по модулю p',
+        `${input} mod p = ${toHex(result)}`
+    );
         showResult('modPRes', `Result:  ${toHex(result)}`, false);
     } catch (error) {
         showResult('modPRes', ' >>> WARNING! <<< Input error. Check HEX format.', true);
@@ -157,6 +169,11 @@ function hexToDec() {
     try {
         const hex = document.getElementById('hexInput').value.trim();
         if (!hex) {
+            addHistory(
+        'HEX → DEC',
+        'Конвертация',
+        `${hex} = ${decimal}`
+    );
             showResult('hexToDecRes', 'Enter HEX number', true);
             return;
         }
@@ -171,6 +188,11 @@ function decToHex() {
     try {
         const dec = document.getElementById('decInput').value.trim();
         if (!dec) {
+            addHistory(
+        'HEX → DEC',
+        'Конвертация',
+        `${hex} = ${decimal}`
+    );
             showResult('decToHexRes', 'Enter DEC number', true);
             return;
         }
